@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  
+  <title>Home</title>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script>
+    const Joao = {
+      "nome": "João",
+      "pedidos": [
+        {"item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14")},
+        {"item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14")},
+        {"item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10")},
+        {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10")}
+      ]
+    }
+    localStorage.setItem("user", JSON.stringify(Joao));
+    function startPageExample() {
+      const user = JSON.parse(localStorage.getItem("user"));
+      $("#nome-cliente").html(`${user.nome}!`);
+      for (const item of user.pedidos) {
+        let listGroup = $("#lista-pedido");
+        let dataPedido = new Date(item.data);
+        let today = new Date();
+        let entrega = new Date();
+        entrega.setDate(today+10);
+        listGroup.append(`
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Pedido #${item.id}</h5>
+              <small>Realizado ${dataPedido.toLocaleDateString()}</small>
+            </div>
+            <p class="mb-1">Item: ${item.item}</p>
+            <small>Entrega prevista: ${entrega}</small>
+          </a>
+        `);
+      };
+    }
+  </script>
+</head>
+<body>
+  <!--Adicionando a navbar-->
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand align-self-start" href="#">Formula Clean</a>
+      <button type="button" class="btn btn-dark btn-lg" onclick="location.href = './login.html'">Sair</button>
+      
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contato</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Outras opções
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Opção 1</a></li>
+              <li><a class="dropdown-item" href="#">Opção 2</a></li>
+              <li><a class="dropdown-item" href="#">Uma outra opção</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--Adicionando o conteúdo dos pedidos-->
+  <h3 class="p-2">Olá, <span id="nome-cliente"></span></h3>
+  <div class="p-3 fs-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+    Lista de Pedidos em aberto
+  </div>
+  <div class="list-group" id="lista-pedido">
+  </div>
+  <script>
+    startPageExample();
+  </script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
