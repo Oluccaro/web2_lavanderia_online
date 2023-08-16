@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <title>Pedido</title>
+</head>
+
+<body>
+
+  <body class="bg-light">
+    <!--Cabeçalho-->
+    <header>
+      <nav></nav>
+    </header>
+
+    <!--Título-->
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <img src="imagens/faça seu pedido.png" class="img-fluid" alt="...">
+          </div>
+        </div>
+
+        <!--Categorias de roupas-->
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+          <div class="col">
+            <div class="card" style="width: 17rem;">
+              <img src="./imagens/camiseta.svg" class="card-img-top" alt="Camiseta">
+              <div class="card-body">
+                <h5 class="card-title">Camiseta</h5>
+                <div class="info">
+                  <span class="preco">R$ 10</span> <br>
+                  <span class="preco">3 dias úteis.</span>
+                </div>
+                <p class="card-text">Camisetas de todos os tipos.</p>
+                <div class="row row-cols-1 g-2">
+                  <label for="inputQuantidade" class="visually-hidden">Quantidade</label>
+                  <input type="number" class="form-control" id="inputQuantidade" placeholder="Quantidade">
+                  <button class="btn btn-primary" type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-info-subtle" style="width: 17rem;">
+              <img src="./imagens/moletom.svg" class="card-img-top" alt="Moletom">
+              <div class="card-body">
+                <h5 class="card-title">Agasalho</h5>
+                <div class="info">
+                  <span class="preco">R$ 10</span> <br>
+                  <span class="preco">3 dias úteis.</span>
+                </div>
+                <p class="card-text">Casacos leves, moletons e lãs.</p>
+                <div class="row row-cols-1 g-2">
+                  <label for="inputQuantidade" class="visually-hidden">Quantidade</label>
+                  <input type="number" class="form-control" id="inputQuantidade" placeholder="Quantidade">
+                  <button class="btn btn-primary" type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-info-subtle" style=" width: 17rem;">
+              <img src="./imagens/calca2.svg" class="card-img-top" alt="Calça">
+              <div class="card-body">
+                <h5 class="card-title">Calça</h5>
+                <div class="info">
+                  <span class="preco">R$ 10</span> <br>
+                  <span class="preco">3 dias úteis.</span>
+                </div>
+                <p class="card-text">Calças, bermudas e shorts.</p>
+                <div class="row row-cols-1 g-2">
+                  <label for="inputQuantidade" class="visually-hidden">Quantidade</label>
+                  <input type="number" class="form-control" id="inputQuantidade" placeholder="Quantidade">
+                  <button class="btn btn-primary" type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card" style="width: 17rem;">
+              <img src="./imagens/vestido.svg" class="card-img-top" alt="Vestido">
+              <div class="card-body">
+                <h5 class="card-title">Formal</h5>
+                <div class="info">
+                  <span class="preco">R$ 10</span> <br>
+                  <span class="preco">3 dias úteis.</span>
+                </div>
+                <p class="card-text">Roupas formais, de gala ou luxo. Ternos e vestidos. </p>
+                <div class="row row-cols-1 g-2">
+                  <label for="inputQuantidade" class="visually-hidden">Quantidade</label>
+                  <input type="number" class="form-control" id="inputQuantidade" placeholder="Quantidade">
+                  <button class="btn btn-primary" type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card" style="width: 17rem;">
+              <img src="./imagens/bebe-coracao.svg" class="card-img-top" alt="Roupa de bebÊ">
+              <div class="card-body">
+                <h5 class="card-title">Delicadas</h5>
+                <div class="info">
+                  <span class="preco">R$ 10</span> <br>
+                  <span class="preco">3 dias úteis.</span>
+                </div>
+                <p class="card-text">Roupas delicadas, que precisam de cuidado especial.</p>
+                <div class="row row-cols-1 g-2">
+                  <label for="inputQuantidade" class="visually-hidden">Quantidade</label>
+                  <input type="number" class="form-control" id="inputQuantidade" placeholder="Quantidade">
+                  <button class="btn btn-primary" type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card" style="width: 17rem;">
+              <img src="./imagens/cobertor.svg" class="card-img-top" alt="Cobertor">
+              <div class="card-body">
+                <h5 class="card-title">Cama, Mesa e Banho</h5>
+                <div class="info">
+                  <span class="preco">R$ 10</span> <br>
+                  <span class="preco">3 dias úteis.</span>
+                </div>
+                <p class="card-text">Cobertores, toalhas, almofadas. </p>
+                <div class="row row-cols-1 g-2">
+                  <label for="inputQuantidade" class="visually-hidden">Quantidade</label>
+                  <input type="number" class="form-control" id="inputQuantidade" placeholder="Quantidade">
+                  <button class="btn btn-primary" type="submit">Adicionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Pedido-->
+          <ul class="list-group mb-3">
+            <li class="list-group-item py-3">
+              <div class="row g-12">
+                <div class="col-4 col-md-3 col lg-2">
+                  <h5>Item</h5>
+                </div>
+              </div>
+              <div class="col-8 col-md-9 text-left align-text-center">
+                <h5> Prazo de entrega </h5>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+
+</html>
