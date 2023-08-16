@@ -1,0 +1,42 @@
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 2fr 1fr;
+  place-items: start;
+}
+
+.titulo {
+  grid-column: 1 / -1;
+}
+
+.info {
+  display: grid;
+  gap: 20px;
+  place-items: start;
+}
+
+/* Estilos Gerais */
+
+body {
+  font-family: Arial;
+  margin: 40px;
+}
+
+h1,
+p {
+  margin: 0px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.card-img-top {
+  max-width: 100%;
+  border-radius: 4px;
+}
+.preco {
+  background: #ddd;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
