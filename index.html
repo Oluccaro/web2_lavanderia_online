@@ -32,8 +32,13 @@
               <h5 class="mb-1">Pedido #${item.id}</h5>
               <small>Realizado ${dataPedido.toLocaleDateString()}</small>
             </div>
-            <p class="mb-1">Item: ${item.item}</p>
-            <small>Entrega prevista: ${entrega}</small>
+            <div class="d-flex w-100 justify-content-between">
+              <p class="mb-1">Item: ${item.item}</p>
+              <form>
+                <button class="btn btn-danger" formaction="cancela.html">Cancelar Pedido</button>
+              </form>
+            </div>
+              <small>Entrega prevista: ${entrega}</small>            
           </a>
         `);
       };
