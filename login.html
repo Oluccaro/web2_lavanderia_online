@@ -6,6 +6,8 @@
   <title>Tela de Login</title>
   <!-- Incluindo o CSS do Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- Option 1: Include in HTML -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body class="bg-light">
     <nav role="navigation">
@@ -57,9 +59,9 @@
                                 <label for="password" class="form-label">Senha</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="mostrarSenhaBtn">
-                                      <i class="bi bi-eye"></i>
-                                    </button>
+                                    <span class="container" id="mostrarSenhaBtn">
+                                      <i id="olho" class="bi bi-eye"></i>
+                                    </span>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary w-100" formaction="index.html">Entrar</button>
@@ -82,7 +84,6 @@
     <script>
         const senhaInput = document.getElementById('password');
         const mostrarSenhaBtn = document.getElementById('mostrarSenhaBtn');
-
         mostrarSenhaBtn.addEventListener('click', () => {
         if (senhaInput.type === 'password') {
             senhaInput.type = 'text';
