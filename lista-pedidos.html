@@ -13,7 +13,22 @@
         {"item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14")},
         {"item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14")},
         {"item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10")},
-        {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10")}
+        {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10")},
+        {"item": "Camisa Polo", "status": "A", "id": 201, "data": new Date("2023/09/01")},
+        {"item": "Vestido Floral", "status": "C", "id": 202, "data": new Date("2023/09/02")},
+        {"item": "Calça Jeans", "status": "X", "id": 203, "data": new Date("2023/09/03")},
+        {"item": "Blusa Listrada", "status": "T", "id": 204, "data": new Date("2023/09/04")},
+        {"item": "Jaqueta de Couro", "status": "A", "id": 205, "data": new Date("2023/09/05")},
+        {"item": "Saia Plissada", "status": "C", "id": 206, "data": new Date("2023/09/06")},
+        {"item": "Bermuda Cargo", "status": "X", "id": 207, "data": new Date("2023/09/07")},
+        {"item": "Blazer Clássico", "status": "T", "id": 208, "data": new Date("2023/09/08")},
+        {"item": "Vestido de Festa", "status": "A", "id": 209, "data": new Date("2023/09/09")},
+        {"item": "Calça de Alfaiataria", "status": "C", "id": 210, "data": new Date("2023/09/10")},
+        {"item": "Regata Esportiva", "status": "X", "id": 211, "data": new Date("2023/09/11")},
+        {"item": "Cardigan de Tricô", "status": "T", "id": 212, "data": new Date("2023/09/12")},
+        {"item": "Macacão Jeans", "status": "A", "id": 213, "data": new Date("2023/09/13")},
+        {"item": "Blusa Ombro a Ombro", "status": "C", "id": 214, "data": new Date("2023/09/14")},
+        {"item": "Shorts de Linho", "status": "X", "id": 215, "data": new Date("2023/09/15")}
       ],
       "statusInfo": 
         {"A": ["text-info", "Aberto"],
@@ -21,17 +36,22 @@
          "X": ["text-danger", "Cancelado"],
          "T": ["text-warning", "Em entrega"]}
     }
+
     localStorage.setItem("user", JSON.stringify(Joao));
     function startPageExample() {
       const user = JSON.parse(localStorage.getItem("user"));
+      //Função para odernar array
+      user.pedidos.sort(function(a,b){
+        return b.data > a.data;
+      });
       $("#nome-cliente").html(`${user.nome}!`);
       for (const item of user.pedidos) {
         let listGroup = $("#lista-pedido");
         let dataPedido = new Date(item.data);
         let entrega = new Date();
-        entrega.setDate(entrega.getDate()+10);
+        entrega.setDate(dataPedido.getDate()+10);
         listGroup.append(`
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+          <a id="${item.id}-${item.status}" href="#" class="list-group-item list-group-item-action" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">Pedido #${item.id}</h5>
               <small>Realizado ${dataPedido.toLocaleDateString()}</small>
@@ -42,6 +62,7 @@
                 <p class="mb-1 ${user.statusInfo[item.status][0]}"> Status: ${user.statusInfo[item.status][1]}</p>
               </div>
               <form>
+                <button class="btn btn-primary" formaction="pagar.html">Pagar Pedido</button>
                 <button class="btn btn-danger" formaction="cancela.html">Cancelar Pedido</button>
               </form>
             </div>
@@ -49,6 +70,15 @@
           </a>
         `);
       };
+      //Gerando combo de status
+      let listStatus = $("#lista-status");
+      let i = 0;
+      for(const status in user.statusInfo){
+        console.log(i++);
+        listStatus.append(`
+          <option>${user.statusInfo[status][1]}</option>
+        `);
+      }
     }
   </script>
 </head>
@@ -79,12 +109,16 @@
   <!--Adicionando o conteúdo dos pedidos-->
   <h3 class="p-2">Olá, <span id="nome-cliente"></span></h3>
   <div class="p-3 fs-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-    Lista de Pedidos em aberto
+    Todos os pedidos
+    <div class="container-sm">
+      <select id="lista-status" class="form-select" aria-label="Default select example">
+        <option selected>Filtrar por status do pedido</option>
+      </select>
+    </div>
   </div>
   <div class="container-lg">
     <div class="list-group" id="lista-pedido">
     </div>
-    <button type="button" class="btn btn-outline-primary mt-2" onclick="location.href='lista-pedidos.html'">Listar Todos os Pedidos</button>
   </div>
   <script>
     startPageExample();
