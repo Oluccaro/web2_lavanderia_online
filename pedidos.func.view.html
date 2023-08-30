@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style-pedido.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">  
+  <title>Home</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script>
+  
+  const funcionario = {
+    "nome": "Juliana"
+  }
+
+  const pedidos = 
+  {
+    "pedidos": [
+      {"item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14"), "nome": "João"},
+      {"item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14"), "nome": "João"},
+      {"item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10"), "nome": "João"},
+      {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10"), "nome": "João"},
+      {"item": "Vestido Floral", "status": "CA", "id": 127, "data": new Date("2023/08/15"), "nome": "Maria"},
+      {"item": "Sapatos de Salto", "status": "A", "id": 128, "data": new Date("2023/08/15"), "nome": "Maria"},
+      {"item": "Bolsa de Couro", "status": "RC", "id": 64, "data": new Date("2023/08/11"), "nome": "Maria"},
+      {"item": "Camisa Xadrez", "status": "AP", "id": 129, "data": new Date("2023/08/16"), "nome": "Carlos"},
+      {"item": "Calça Jeans", "status": "P", "id": 130, "data": new Date("2023/08/16"), "nome": "Carlos"},
+      {"item": "Blusa Branca", "status": "F", "id": 131, "data": new Date("2023/08/17"), "nome": "Ana"},
+      {"item": "Tênis Esportivo", "status": "A", "id": 132, "data": new Date("2023/08/18"), "nome": "Pedro"},
+      {"item": "Shorts de Academia", "status": "A", "id": 133, "data": new Date("2023/08/18"), "nome": "Pedro"},
+      {"item": "Vestido de Festa", "status": "RC", "id": 134, "data": new Date("2023/08/19"), "nome": "Sofia"},
+      {"item": "Sandálias Elegantes", "status": "A", "id": 135, "data": new Date("2023/08/19"), "nome": "Sofia"},
+      {"item": "Brincos de Prata", "status": "CA", "id": 65, "data": new Date("2023/08/12"), "nome": "Sofia"},
+      {"item": "Camiseta Listrada", "status": "AP", "id": 136, "data": new Date("2023/08/20"), "nome": "Miguel"},
+      {"item": "Bermuda Cargo", "status": "A", "id": 137, "data": new Date("2023/08/20"), "nome": "Miguel"},
+      {"item": "Boné de Baseball", "status": "P", "id": 138, "data": new Date("2023/08/13"), "nome": "Miguel"},
+      {"item": "Vestido de Verão", "status": "F", "id": 139, "data": new Date("2023/08/21"), "nome": "Lara"},
+    ]
+  };
+
+  const statusPedido ={
+    "statusInfo": 
+      {"A": ["text-bg-warning", "Aberto"],
+      "RJ": ["text-bg-danger", "Rejeitado"],
+      "CA": ["text-bg-danger", "Cancelado"],
+      "RC": ["text-bg-secondary", "Recolhido"],
+      "AP": ["text-bg-primary", "Aguardando Pagamento"],
+      "P" : ["text-bg-orange", "Pago"],
+      "F":  ["text-bg-success", "Finalizado"]}
+    }
+      
+      
+
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+    localStorage.setItem("funcionario", JSON.stringify(funcionario));
+
+    function startPageExample() {
+      const pedidos = JSON.parse(localStorage.getItem("pedidos"));
+      const fucionario = JSON.parse(localStorage.getItem("funcionario"));
+      //Função para odernar array
+      pedidos.pedidos.sort(function(a,b){
+        return b.data > a.data;
+      });
+
+      $("#nome-funcionario").html(`${funcionario.nome}!`);
+
+      for (const pedido of pedidos.pedidos) {
+        let listGroup = $("#lista-pedido");
+        let dataPedido = new Date(pedido.data);
+        let entrega = new Date();
+        entrega.setDate(dataPedido.getDate()+10);
+        listGroup.append(`
+          <a id="${pedido.id}-${pedido.status}" 
+             class="list-group-item list-group-item-action p-3 m-1 rounded" 
+             aria-current="true" 
+             style="background-color: #e3e3e3;">
+
+            <div class="d-flex w-100 justify-content-between p-2">
+              <h5 class="mb-1">Pedido #${pedido.id} | Cliente: ${pedido.nome}</h5>
+              <small>Realizado ${dataPedido.toLocaleDateString()}</small>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+              <div>
+                <p class="mb-1">Item: ${pedido.item}</p>
+                <div class="rounded p-1 ${statusPedido.statusInfo[pedido.status][0]}"> Status: ${statusPedido.statusInfo[pedido.status][1]}</div>
+              </div>
+              <form>
+                ${pedido.status == "A" ? `<button class="btn btn-warning" formaction="confirma-recolhimento.html">Confirmar recolhimento</button>` :""}
+                ${pedido.status == "RC" ? `<button class="btn btn-secondary" formaction="confirma-lavagem.html">Confirmar lavagem</button>` :""}
+                ${pedido.status == "P" ? `<button class="btn btn-success" formaction="finalizar-pedidos.html">Finalizar pedido</button>` :""}
+              </form>
+            </div>
+              <small>Entrega prevista: ${entrega.toLocaleDateString()}</small>            
+          </a>
+        `);
+      };
+    }
+  </script>
+</head>
+<body>
+  <!--Adicionando a navbar-->
+  <nav role="navigation">
+      <ul class="nav navbar nav-pills bg-dark">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" id="menu">Menu</a>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="index.html" aria-current="page">Listagem de Pedidos</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="pedido.html">Novo pedido</a></li>
+              </ul>
+          </li>
+          <li class="nav-item">
+              <a>Fórmula Clean</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="login.html">Sair</a>
+          </li>
+      </ul>
+  </nav>
+
+  <!--Adicionando o conteúdo dos pedidos-->
+  <h3 class="p-2">Olá, <span id="nome-funcionario"></span></h3>
+  <div class="p-3 fs-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+    Página Pedidos - Funcionários
+  </div>
+  <div class="container-sm p-2 text-bg-secondary rounded">
+    <label class="p-2" for="data-de">Data de: </label><input class="rounded" type="date" name="data-de" id="">
+    <label class="p-2" for="data-ate">Data até: </label><input class="rounded" type="date" name="data-ate" id="">
+  </div>
+  <div class="container-lg">
+    <div id="lista-pedido">
+    </div>
+  </div>
+  <script>
+    startPageExample();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

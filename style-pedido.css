@@ -50,3 +50,8 @@ p {
 p {
   font-size: 20px;
 }
+
+.text-bg-orange{
+  background-color: rgb(226, 96, 9);
+  color: black;
+}
