@@ -60,7 +60,7 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                                 <div class="input-group-append">
                                     <span class="container" id="mostrarSenhaBtn">
-                                      <i id="olho" class="bi bi-eye"></i>
+                                      <i id="olho" class="bi bi-eye-slash toggle-icon"></i>
                                     </span>
                                 </div>
                             </div>
@@ -84,11 +84,16 @@
     <script>
         const senhaInput = document.getElementById('password');
         const mostrarSenhaBtn = document.getElementById('mostrarSenhaBtn');
+        const olhoBtn = document.getElementById('olho');
         mostrarSenhaBtn.addEventListener('click', () => {
         if (senhaInput.type === 'password') {
             senhaInput.type = 'text';
+            olhoBtn.classList.remove("bi-eye-slash");
+            olhoBtn.classList.add("bi-eye");
         } else {
             senhaInput.type = 'password';
+            olhoBtn.classList.remove("bi-eye");
+            olhoBtn.classList.add("bi-eye-slash");
         }
         });
     </script>    
