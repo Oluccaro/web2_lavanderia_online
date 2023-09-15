@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style-pedido.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <title>Home</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js" integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js" integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script>
+  
+  const funcionario = {
+    "nome": "Juliana"
+  }
 
-    const funcionario = {
-      "nome": "Juliana"
+  const pedidos = 
+  {
+    "pedidos": [
+      {"item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14"), "nome": "João"},
+      {"item": "Camiseta Preta", "status": "P", "id": 126, "data": new Date("2023/08/14"), "nome": "João"},
+      {"item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10"), "nome": "João"},
+      {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10"), "nome": "João"},
+      {"item": "Vestido Floral", "status": "CA", "id": 127, "data": new Date("2023/08/15"), "nome": "Maria"},
+      {"item": "Sapatos de Salto", "status": "A", "id": 128, "data": new Date("2023/08/15"), "nome": "Maria"},
+      {"item": "Bolsa de Couro", "status": "RC", "id": 64, "data": new Date("2023/08/11"), "nome": "Maria"},
+      {"item": "Camisa Xadrez", "status": "AP", "id": 129, "data": new Date("2023/08/16"), "nome": "Carlos"},
+      {"item": "Calça Jeans", "status": "P", "id": 130, "data": new Date("2023/08/16"), "nome": "Carlos"},
+      {"item": "Blusa Branca", "status": "P", "id": 131, "data": new Date("2023/08/17"), "nome": "Ana"},
+      {"item": "Tênis Esportivo", "status": "A", "id": 132, "data": new Date("2023/08/18"), "nome": "Pedro"},
+      {"item": "Shorts de Academia", "status": "A", "id": 133, "data": new Date("2023/08/18"), "nome": "Pedro"},
+      {"item": "Vestido de Festa", "status": "RC", "id": 134, "data": new Date("2023/08/19"), "nome": "Sofia"},
+      {"item": "Sandálias Elegantes", "status": "A", "id": 135, "data": new Date("2023/08/19"), "nome": "Sofia"},
+      {"item": "Brincos de Prata", "status": "CA", "id": 65, "data": new Date("2023/08/12"), "nome": "Sofia"},
+      {"item": "Camiseta Listrada", "status": "AP", "id": 136, "data": new Date("2023/08/20"), "nome": "Miguel"},
+      {"item": "Bermuda Cargo", "status": "A", "id": 137, "data": new Date("2023/08/20"), "nome": "Miguel"},
+      {"item": "Boné de Baseball", "status": "P", "id": 138, "data": new Date("2023/08/13"), "nome": "Miguel"},
+      {"item": "Vestido de Verão", "status": "F", "id": 139, "data": new Date("2023/08/21"), "nome": "Lara"},
+    ]
+  };
+
+  const statusPedido ={
+    "statusInfo": 
+      {"A": ["text-bg-warning", "Aberto"],
+      "RJ": ["text-bg-danger", "Rejeitado"],
+      "CA": ["text-bg-danger", "Cancelado"],
+      "RC": ["text-bg-secondary", "Recolhido"],
+      "AP": ["text-bg-primary", "Aguardando Pagamento"],
+      "P" : ["text-bg-orange", "Pago"],
+      "F":  ["text-bg-success", "Finalizado"]}
     }
+      
+      
 
-    const pedidos =
-    {
-      "pedidos": [
-        { "item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14"), "nome": "João" },
-        { "item": "Camiseta Preta", "status": "P", "id": 126, "data": new Date("2023/08/14"), "nome": "João" },
-        { "item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10"), "nome": "João" },
-        { "item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10"), "nome": "João" },
-        { "item": "Vestido Floral", "status": "CA", "id": 127, "data": new Date("2023/08/15"), "nome": "Maria" },
-        { "item": "Sapatos de Salto", "status": "A", "id": 128, "data": new Date("2023/08/15"), "nome": "Maria" },
-        { "item": "Bolsa de Couro", "status": "RC", "id": 64, "data": new Date("2023/08/11"), "nome": "Maria" },
-        { "item": "Camisa Xadrez", "status": "AP", "id": 129, "data": new Date("2023/08/16"), "nome": "Carlos" },
-        { "item": "Calça Jeans", "status": "P", "id": 130, "data": new Date("2023/08/16"), "nome": "Carlos" },
-        { "item": "Blusa Branca", "status": "P", "id": 131, "data": new Date("2023/08/17"), "nome": "Ana" },
-        { "item": "Tênis Esportivo", "status": "A", "id": 132, "data": new Date("2023/08/18"), "nome": "Pedro" },
-        { "item": "Shorts de Academia", "status": "A", "id": 133, "data": new Date("2023/08/18"), "nome": "Pedro" },
-        { "item": "Vestido de Festa", "status": "RC", "id": 134, "data": new Date("2023/08/19"), "nome": "Sofia" },
-        { "item": "Sandálias Elegantes", "status": "A", "id": 135, "data": new Date("2023/08/19"), "nome": "Sofia" },
-        { "item": "Brincos de Prata", "status": "CA", "id": 65, "data": new Date("2023/08/12"), "nome": "Sofia" },
-        { "item": "Camiseta Listrada", "status": "AP", "id": 136, "data": new Date("2023/08/20"), "nome": "Miguel" },
-        { "item": "Bermuda Cargo", "status": "A", "id": 137, "data": new Date("2023/08/20"), "nome": "Miguel" },
-        { "item": "Boné de Baseball", "status": "P", "id": 138, "data": new Date("2023/08/13"), "nome": "Miguel" },
-        { "item": "Vestido de Verão", "status": "F", "id": 139, "data": new Date("2023/08/21"), "nome": "Lara" },
-      ]
-    };
-
-    const statusPedido = {
-      "statusInfo":
-      {
-        "A": ["text-bg-warning", "Aberto"],
-        "RJ": ["text-bg-danger", "Rejeitado"],
-        "CA": ["text-bg-danger", "Cancelado"],
-        "RC": ["text-bg-secondary", "Recolhido"],
-        "AP": ["text-bg-primary", "Aguardando Pagamento"],
-        "P": ["text-bg-orange", "Pago"],
-        "F": ["text-bg-success", "Finalizado"]
-      }
-    }
-
-
-
-    if (!localStorage.getItem("pedidos")) {
+    if(!localStorage.getItem("pedidos")){
       localStorage.setItem("pedidos", JSON.stringify(pedidos));
     }
-    if (!localStorage.getItem("funcionario")) {
+    if(!localStorage.getItem("funcionario")){
       localStorage.setItem("funcionario", JSON.stringify(funcionario));
     }
 
@@ -66,7 +62,7 @@
       const pedidos = JSON.parse(localStorage.getItem("pedidos"));
       const fucionario = JSON.parse(localStorage.getItem("funcionario"));
       //Função para odernar array
-      pedidos.pedidos.sort(function (a, b) {
+      pedidos.pedidos.sort(function(a,b){
         return b.data > a.data;
       });
 
@@ -76,7 +72,7 @@
         let listGroup = $("#lista-pedido");
         let dataPedido = new Date(pedido.data);
         let entrega = new Date();
-        entrega.setDate(dataPedido.getDate() + 10);
+        entrega.setDate(dataPedido.getDate()+10);
         listGroup.append(`
           <a id="${pedido.id}-${pedido.status}" 
              class="list-group-item list-group-item-action p-3 m-1 rounded" 
@@ -93,9 +89,9 @@
                 <div class="rounded p-1 ${statusPedido.statusInfo[pedido.status][0]}"> Status: ${statusPedido.statusInfo[pedido.status][1]}</div>
               </div>
               <div>
-                ${pedido.status == "A" ? `<button class="btn btn-warning" formaction="confirma-recolhimento.html'">Confirmar recolhimento</button>` : ""}
-                ${pedido.status == "RC" ? `<button class="btn btn-secondary" formaction="confirma-lavagem.html">Confirmar lavagem</button>` : ""}
-                ${pedido.status == "P" ? `<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finalizaModal" data-bs-whatever="${pedido.id}">Finalizar pedido</button>` : ""}
+                ${pedido.status == "AP" ? `<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#recolheModal" data-bs-whatever="${pedido.id}">Confirmar recolhimento</button>` :""}
+                ${pedido.status == "RC" ? `<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#lavaModal" data-bs-whatever="${pedido.id}" >Confirmar lavagem</button>` :""}
+                ${pedido.status == "P" ? `<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finalizaModal" data-bs-whatever="${pedido.id}">Finalizar pedido</button>` :""}
               </div>
             </div>
               <small>Entrega prevista: ${entrega.toLocaleDateString()}</small>            
@@ -103,56 +99,51 @@
         `);
       };
     }
-    //Função para finalizar os pedidos
-    function finalizarPedido(id) {
-      const pedidos = JSON.parse(localStorage.getItem("pedidos"));
-      let escolhido = pedidos.pedidos.find((elem) => elem.id == id);
-      escolhido.status = "F";
-      localStorage.setItem("pedidos", JSON.stringify(pedidos));
-      window.location.reload();
-    }
+  //Função para finalizar os pedidos
+  function finalizarPedido(id){
+    const pedidos = JSON.parse(localStorage.getItem("pedidos"));
+    let escolhido = pedidos.pedidos.find((elem) => elem.id == id);
+    escolhido.status = "F";
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+    window.location.reload();
+  }
+  //Função para confirmar o recolhimento
+  function recolherPedido(id){
+    const pedidos = JSON.parse(localStorage.getItem("pedidos"));
+    let escolhido = pedidos.pedidos.find((elem) => elem.id == id);
+    escolhido.status = "RC";
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+    window.location.reload();
+  }
+  //Função para confirmar a lavagem
+  function lavarPedido(id){
+    const pedidos = JSON.parse(localStorage.getItem("pedidos"));
+    let escolhido = pedidos.pedidos.find((elem) => elem.id == id);
+    escolhido.status = "AP";
+    localStorage.setItem("pedidos", JSON.stringify(pedidos));
+    window.location.reload();
+  }
   </script>
 </head>
-
 <body>
-  <nav class=" navbar bg-body-tertiary sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">FORMULA CLEAN</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Maria</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="confirma-recolhimento.html">Pedidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="funcionario.html">Início</a>
-              <a class="nav-link" href="#">Roupas</a>
-              <a class="nav-link" href="#">Funcionários</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Relatórios
-              </a>
+  <!--Adicionando a navbar-->
+  <nav role="navigation">
+      <ul class="nav navbar nav-pills bg-dark">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" id="menu">Menu</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Receitas</a></li>
-                <li><a class="dropdown-item" href="#">Clientes</a></li>
-                <li><a class="dropdown-item" href="#">Clientes Fiéis</a></li>
-                <li class="nav-item">
-                  <a class="nav-link" href="login.html">Sair</a>
-                </li>
+                  <li><a class="dropdown-item" href="index.html" aria-current="page">Listagem de Pedidos</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="pedido.html">Novo pedido</a></li>
               </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+          </li>
+          <li class="nav-item">
+              <a>Fórmula Clean</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="login.html">Sair</a>
+          </li>
+      </ul>
   </nav>
 
   <!--Adicionando o conteúdo dos pedidos-->
@@ -168,6 +159,7 @@
     <div id="lista-pedido">
     </div>
   </div>
+  <!--Tela confirmação finalização-->
   <div class="modal fade" id="finalizaModal" tabindex="-1" aria-labelledby="finalizaModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -178,7 +170,7 @@
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <h3 class="modal-title fs-6" id="recipient-name"></h3>
+              <h3 class="modal-title fs-6"  id="recipient-name"></h3>
             </div>
           </form>
         </div>
@@ -189,8 +181,55 @@
       </div>
     </div>
   </div>
+  <!--Tela confirmação recolhimento-->
+  <div class="modal fade" id="recolheModal" tabindex="-1" aria-labelledby="recolheModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="recolheModalLabel">New message</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <h3 class="modal-title fs-6"  id="recipient-name"></h3>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" id="botaoRecolhe" class="btn btn-success">Recolher</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Tela confirmação lavagem-->
+  <div class="modal fade" id="lavaModal" tabindex="-1" aria-labelledby="lavaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="lavaModalLabel">New message</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <h3 class="modal-title fs-6"  id="recipient-name"></h3>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" id="botaoLava" class="btn btn-success">Lavar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const finalizaModal = document.getElementById('finalizaModal')
+    const recolheModal = document.getElementById('recolheModal')
+    const lavaModal = document.getElementById('lavaModal')
     if (finalizaModal) {
       finalizaModal.addEventListener('show.bs.modal', event => {
         // Button that triggered the modal
@@ -204,18 +243,60 @@
         // Update the modal's content.
         const modalTitle = finalizaModal.querySelector('.modal-title');
         const modalBodyInput = finalizaModal.querySelector('.modal-body h3');
-
+        
         modalTitle.textContent = `Confirmação!`;
         modalBodyInput.textContent = `Deseja mesmo confirmar o pedido #${recipient}?`;
-
+        
         //Botão para chamr a função que atualiza o pedido
         const botaoFinaliza = finalizaModal.querySelector("#botaoFinaliza");
         botaoFinaliza.addEventListener('click', () => finalizarPedido(recipient));
       })
     }
+    if (recolheModal) {
+      recolheModal.addEventListener('show.bs.modal', event => {
+        // Button that triggered the modal
+        const button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        const recipient = button.getAttribute('data-bs-whatever');
+        console.log('data-bs-whatever');
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
+
+        // Update the modal's content.
+        const modalTitle = recolheModal.querySelector('.modal-title');
+        const modalBodyInput = recolheModal.querySelector('.modal-body h3');
+        
+        modalTitle.textContent = `Recolhimento!`;
+        modalBodyInput.textContent = `Deseja mesmo recolher o pedido #${recipient}?`;
+        
+        //Botão para chamr a função que atualiza o pedido
+        const botaoRecolhe = recolheModal.querySelector("#botaoRecolhe");
+        botaoRecolhe.addEventListener('click', () => recolherPedido(recipient));
+      })
+    }
+    if (lavaModal) {
+      lavaModal.addEventListener('show.bs.modal', event => {
+        // Button that triggered the modal
+        const button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        const recipient = button.getAttribute('data-bs-whatever');
+        console.log('data-bs-whatever');
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
+
+        // Update the modal's content.
+        const modalTitle = lavaModal.querySelector('.modal-title');
+        const modalBodyInput = lavaModal.querySelector('.modal-body h3');
+        
+        modalTitle.textContent = `Lavagem!`;
+        modalBodyInput.textContent = `Deseja mesmo lavar o pedido #${recipient}?`;
+        
+        //Botão para chamr a função que atualiza o pedido
+        const botaoLava = lavaModal.querySelector("#botaoLava");
+        botaoLava.addEventListener('click', () => lavarPedido(recipient));
+      })
+    }
     startPageExample();
   </script>
-
 </body>
-
 </html>
