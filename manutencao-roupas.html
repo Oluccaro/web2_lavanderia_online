@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manutenção de Roupas</title>
+  <title>Manutenção de Peças de Roupas</title>
   <!-- Incluindo o CSS do Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -13,104 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 </head>
-
-<script type="text/javascript">
-  const modal = document.querySelector('.modal-container')
-  const tbody = document.querySelector('tbody')
-  const roupa = document.querySelector('#roupa')
-  const hPreco = document.querySelector('#preco')
-  const prazo = document.querySelector('#prazo')
-  const btnsalvar = document.querySelector('#salvar')
-
-  let itens
-  let id
-
-  const getItensBD = () => JSON.parse(localStorage.getItem('dbfunc')) ?? []
-  const getItensBD = () => localStorage.setItem('dbfunc', JSON.stringify(itens))
-
-  function loadItens() {
-    itens = getItensBD()
-    tbody.innerHTML = ''
-    itens.forEach((item, index) => {
-      insereItem(item, index)
-    })
-  }
-
-  loadItens()
-
-  function insertItem(item, index) {
-    let tr = document.createElement('tr')
-
-    tr.innerHTML = `
-      <td>${item.roupa}</td>
-      <td>R$ ${item.preco}</td>
-      <td>${item.prazo} dias</td>
-      <td class="acao">
-        <button onclick="editItem(${index})"><i class="bi bi-pencil"></button>
-      </td>
-      <td class="acao">
-        <button onclick="deleteItem(${index})"><i class="bi bi-trash"></button>
-      </td>
-    `
-    tbody.appendChild(tr)
-  }
-
-  function editItem(index) {
-    openModal(true, index)
-  }
-
-  function deleteItem(index) {
-    itens.splice(index, 1)
-    setItensBD()
-    loadItens()
-  }
-
-  function openModal(edit = false, index = 0) {
-    modal.classList.add('active')
-
-    modal.onclick = e => {
-      if (e.target.className.indexOf('modal-container') !== -1) {
-        modal.classList.remove('active')
-      }
-    }
-
-    if (edit) {
-      roupa.value = itens[index].roupa
-      hPreco.value = itens[index].preco
-      prazo.value = itens[index].prazo
-      id = index
-    }
-    else {
-      roupa.value = ''
-      hPreco.value = ''
-      prazo.value = ''
-    }
-  }
-
-  btnsalvar.onclick = e => {
-    if (roupa.value == '' || hPreco.value == '' || prazo.value == '')
-      return
-  }
-
-  e.preventDefault();
-
-  if (id != indefined) {
-    itens[id].roupa = roupa.value
-    itens[id].preco = hPreco.value
-    itens[id].prazo = prazo.value
-  }
-  else {
-    itens.push({ 'roupa': roupa.value, 'preco': hPreco.value, 'prazo': prazo.value })
-  }
-
-  setItensBD()
-
-  modal.classList.remove('active')
-  loadItens()
-  id = undefined
-</script>
-
-
 
 <body class="bg-light">
   <!--Adicionando a navbar-->
@@ -157,39 +59,71 @@
               <div class="row g-0">
                 <div class="col-lg-8">
                   <div class="p-5">
-                    <div class="d-flex justify-content-between align-items-center mb-5">
-                      <h1 class="fw-bold mb-0 text-black">Manutenção de peças de roupas</h1>
-                      <button onclick="openModal()" id="new">Adicionar</button>
+                    <div class="container d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Manutenção de Roupas</h1>
+                      <!-- Botão para abrir o formulário de adição -->
+                      <button class="btn btn-outline-primary mt-2" onclick="openForm()">Adicionar</button>
                     </div>
 
                     <hr class="my-4">
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Peça de Roupa</th>
-                            <th>Preço (R$)</th>
-                            <th>Prazo (dias)</th>
-                            <th class="acao">Editar</th>
-                            <th class="acao">Excluir</th>
-                          </tr>
-                        </thead>
-                        <tbody></tbody>
+                      <!-- Tabela para exibir os itens -->
+                      <table class="table mt-4">
+                          <thead>
+                              <tr>
+                                  <th>Peça de Roupa</th>
+                                  <th>Preço</th>
+                                  <th>Prazo</th>
+                                  <th class="acao">Editar</th>
+                                  <th class="acao">Excluir</th>
+                              </tr>
+                          </thead>
+                          <tbody id="item-list">
+                              <!-- Dados iniciais -->
+                              <tr>
+                                  <td>Calça Jeans</td>
+                                  <td>59.90</td>
+                                  <td>3</td>
+                                  <td class="acao"><button class="btn btn-primary" onclick="editItem(0)">Editar</button></td>
+                                  <td class="acao"><button class="btn btn-danger" onclick="deleteItem(0)">Excluir</button></td>
+                              </tr>
+                              <tr>
+                                  <td>Camiseta Branca</td>
+                                  <td>29.90</td>
+                                  <td>2</td>
+                                  <td class="acao"><button class="btn btn-primary" onclick="editItem(1)">Editar</button></td>
+                                  <td class="acao"><button class="btn btn-danger" onclick="deleteItem(1)">Excluir</button></td>
+                              </tr>
+                              <tr>
+                                  <td>Vestido de Festa</td>
+                                  <td>99.90</td>
+                                  <td>7</td>
+                                  <td class="acao"><button class="btn btn-primary" onclick="editItem(2)">Editar</button></td>
+                                  <td class="acao"><button class="btn btn-danger" onclick="deleteItem(2)">Excluir</button></td>
+                              </tr>
+                          </tbody>
                       </table>
                     </div>
-
-                    <div class="modal-container row mb-4 d-flex justify-content-between align-items-center">
-                      <div class="modal">
+                    <!-- Formulário de adição oculto por padrão -->
+                    <div id="add-form" style="display: none;">
+                        <h2>Adicionar Nova Roupa</h2>
                         <form>
-                          <label for="roupa">Peça de Roupa</label>
-                          <input type="text" id="roupa" required>
-                          <label for="preco">Preço (R$)</label>
-                          <input type="number" id="preco" required>
-                          <label for="prazo">Prazo</label>
-                          <input type="number" id="prazo" required>
-                          <button id="salvar">Salvar</button>
+                            <div class="mb-3">
+                                <label for="peca">Peça</label>
+                                <input type="text" class="form-control" id="peca" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="preco">Preço</label>
+                                <input type="number" class="form-control" id="preco" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="prazo">Prazo</label>
+                                <input type="number" class="form-control" id="prazo" required>
+                            </div>
+                            <button type="button" class="btn btn-success" onclick="addItem()">Salvar</button>
+                            <button type="button" class="btn btn-secondary" onclick="closeForm()">Cancelar</button>
                         </form>
-                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -203,6 +137,84 @@
     </div>
     </div>
   </section>
+  <script>
+    // Dados iniciais
+    const items = [
+        { peca: 'Calça Jeans', preco: 59.90, prazo: 3 },
+        { peca: 'Camiseta Branca', preco: 29.90, prazo: 2 },
+        { peca: 'Vestido de Festa', preco: 99.90, prazo: 7 }
+    ];
+
+    // Função para abrir o formulário de adição
+    function openForm() {
+        document.getElementById('add-form').style.display = 'block';
+    }
+
+    // Função para fechar o formulário de adição
+    function closeForm() {
+        document.getElementById('add-form').style.display = 'none';
+    }
+
+    // Função para adicionar um novo item
+    function addItem() {
+        const peca = document.getElementById('peca').value;
+        const preco = parseFloat(document.getElementById('preco').value);
+        const prazo = parseInt(document.getElementById('prazo').value);
+
+        if (peca && preco && prazo) {
+            items.push({ peca, preco, prazo });
+            updateItemList();
+            closeForm();
+        }
+    }
+
+    // Função para atualizar a lista de itens na tabela
+    function updateItemList() {
+        const itemList = document.getElementById('item-list');
+        itemList.innerHTML = '';
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            itemList.innerHTML += `
+                <tr>
+                    <td>${item.peca}</td>
+                    <td>${item.preco.toFixed(2)}</td>
+                    <td>${item.prazo}</td>
+                    <td class="acao">
+                        <button class="btn btn-primary" onclick="editItem(${i})">Editar</button>
+                    </td>
+                    <td class="acao">
+                        <button class="btn btn-danger" onclick="deleteItem(${i})">Excluir</button>
+                    </td>
+                </tr>
+            `;
+        }
+    }
+
+    // Função para editar um item
+    function editItem(index) {
+        const editedItem = prompt('Editar item (peca, preco, prazo):', `${items[index].peca}, ${items[index].preco}, ${items[index].prazo}`);
+        if (editedItem !== null) {
+            const [peca, preco, prazo] = editedItem.split(',').map(str => str.trim());
+            if (peca && preco && prazo) {
+                items[index] = { peca, preco: parseFloat(preco), prazo: parseInt(prazo) };
+                updateItemList();
+            }
+        }
+    }
+
+    // Função para excluir um item
+    function deleteItem(index) {
+        const confirmDelete = confirm('Tem certeza que deseja excluir este item?');
+        if (confirmDelete) {
+            items.splice(index, 1);
+            updateItemList();
+        }
+    }
+
+    // Inicializar a lista de itens na tabela
+    updateItemList();
+  </script>
 </body>
 
 </html>
