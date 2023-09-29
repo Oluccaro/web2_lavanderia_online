@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manutenção de Funcionários</title>
+  <!-- Incluindo o CSS do Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+  <!--Adicionando a navbar-->
+  <nav class=" navbar bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a> <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Juliana</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="funcionario.html">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pedidos-funcionarios.html">Pedidos</a>
+              <a class="nav-link active" href="manutencao-roupas.html">Roupas</a>
+              <a class="nav-link" href="manutencao-funcionarios.html">Funcionários</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Relatórios
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Receitas</a></li>
+                <li><a class="dropdown-item" href="#">Clientes</a></li>
+                <li><a class="dropdown-item" href="#">Clientes Fiéis</a></li>
+              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Sair</a>
+            </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="h-100 h-custom" style="background-color:lightblue">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="container d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Manutenção de funcionários</h1>
+                      <!-- Botão para abrir o formulário de adição -->
+                      <button class="btn btn-outline-primary mt-2" onclick="openForm()">Adicionar</button>
+                    </div>
+
+                    <hr class="my-4">
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <!-- Tabela para exibir os itens -->
+                      <table class="table mt-4">
+                          <thead>
+                              <tr>
+                                  <th>Login</th>
+                                  <th>Nome</th>
+                                  <th>Data de Nascimento</th>
+                                  <th>Senha</th>
+                                  <th class="acao">Editar</th>
+                                  <th class="acao">Excluir</th>
+                              </tr>
+                          </thead>
+                          <tbody id="item-list">
+                              <!-- Dados iniciais -->
+                              <tr>
+                                  <td>usuario1</td>
+                                  <td>João</td>
+                                  <td>1990-01-15</td>
+                                  <td>senha1</td>
+                                  <td class="acao"><button class="btn btn-primary" onclick="editItem(0)">Editar</button></td>
+                                  <td class="acao"><button class="btn btn-danger" onclick="deleteItem(0)">Excluir</button></td>
+                              </tr>
+                              <tr>
+                                  <td>usuario2</td>
+                                  <td>Maria</td>
+                                  <td>1985-05-20</td>
+                                  <td>senha2</td>
+                                  <td class="acao"><button class="btn btn-primary" onclick="editItem(1)">Editar</button></td>
+                                  <td class="acao"><button class="btn btn-danger" onclick="deleteItem(1)">Excluir</button></td>
+                              </tr>
+                              <tr>
+                                  <td>usuario3</td>
+                                  <td>Carlos</td>
+                                  <td>1993-12-10</td>
+                                  <td>senha3</td>
+                                  <td class="acao"><button class="btn btn-primary" onclick="editItem(2)">Editar</button></td>
+                                  <td class="acao"><button class="btn btn-danger" onclick="deleteItem(2)">Excluir</button></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                    </div>  
+                    <!-- Formulário de adição oculto por padrão -->
+                    <div id="add-form" style="display: none;">
+                        <h2>Adicionar Novo Funcionário</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="login">Login (email)</label>
+                                <input type="email" class="form-control" id="login" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control" id="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dataNascimento">Data de Nascimento</label>
+                                <input type="date" class="form-control" id="dataNascimento" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha">Senha</label>
+                                <input type="password" class="form-control" id="senha" required>
+                            </div>
+                            <button type="button" class="btn btn-success" onclick="addItem()">Salvar</button>
+                            <button type="button" class="btn btn-secondary" onclick="closeForm()">Cancelar</button>
+                        </form>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+      <script>
+        // Dados iniciais
+        const items = [
+            { login: 'usuario1', nome: 'João', dataNascimento: '1990-01-15', senha: 'senha1' },
+            { login: 'usuario2', nome: 'Maria', dataNascimento: '1985-05-20', senha: 'senha2' },
+            { login: 'usuario3', nome: 'Carlos', dataNascimento: '1993-12-10', senha: 'senha3' }
+        ];
+
+        // Função para abrir o formulário de adição
+        function openForm() {
+            document.getElementById('add-form').style.display = 'block';
+        }
+
+        // Função para fechar o formulário de adição
+        function closeForm() {
+            document.getElementById('add-form').style.display = 'none';
+        }
+
+        // Função para adicionar um novo item
+        function addItem() {
+            const login = document.getElementById('login').value;
+            const nome = document.getElementById('nome').value;
+            const dataNascimento = document.getElementById('dataNascimento').value;
+            const senha = document.getElementById('senha').value;
+
+            if (login && nome && dataNascimento && senha) {
+                items.push({ login, nome, dataNascimento, senha });
+                updateItemList();
+                closeForm();
+            }
+        }
+
+        // Função para atualizar a lista de itens na tabela
+        function updateItemList() {
+            const itemList = document.getElementById('item-list');
+            itemList.innerHTML = '';
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                itemList.innerHTML += `
+                    <tr>
+                        <td>${item.login}</td>
+                        <td>${item.nome}</td>
+                        <td>${item.dataNascimento}</td>
+                        <td>${item.senha}</td>
+                        <td class="acao">
+                            <button class="btn btn-primary" onclick="editItem(${i})">Editar</button>
+                        </td>
+                        <td class="acao">
+                            <button class="btn btn-danger" onclick="deleteItem(${i})">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Função para editar um item
+        function editItem(index) {
+            const editedItem = prompt('Editar item (login, nome, dataNascimento, senha):', `${items[index].login}, ${items[index].nome}, ${items[index].dataNascimento}, ${items[index].senha}`);
+            if (editedItem !== null) {
+                const [login, nome, dataNascimento, senha] = editedItem.split(',').map(str => str.trim());
+                if (login && nome && dataNascimento && senha) {
+                    items[index] = { login, nome, dataNascimento, senha };
+                    updateItemList();
+                }
+            }
+        }
+
+        // Função para excluir um item
+        function deleteItem(index) {
+            const confirmDelete = confirm('Tem certeza que deseja excluir este item?');
+            if (confirmDelete) {
+                items.splice(index, 1);
+                updateItemList();
+            }
+        }
+
+        // Inicializar a lista de itens na tabela
+        updateItemList();
+    </script>
+</body>
+</html>

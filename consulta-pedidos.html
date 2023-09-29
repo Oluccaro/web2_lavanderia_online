@@ -46,31 +46,16 @@
             </div>
         </div>
     </nav>
-    <section class="d-flex">
-        <div class="container py-5 h-100 mb-2">
-            <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
-                <div class="row g-0">
-                    <div class="row">
-                        <div class="col-12 mb-0">
-                            <div class="card-title p-2 vstack gap-3">
-                                <div class="border border-info-subtle border-3 rounded-pill col-3 px-4 py-2" style="background-color: #63E1B4;">
-                                    <h3 class="p-2 fw-bold mb-0 text-light">Olá, <span id="nome-cliente"></span></h3>
-                                </div>
-                                <h5 class="p-2 fw-bold mb-1 text-light-emphasis"> Consultar pedidos </h5>
-                            </div>
-                            <div class="container-sm">
-                                <div class="mb-3">
-                                    <label for="npedido" class="form-label">Número do pedido:</label>
-                                    <input type="text" class="form-control" id="npedido" name="npedido" required>
-                                    <button type="button" class="btn btn-outline-primary mt-2" onclick="location.href='cancela.html'">Consultar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="p-3 fs-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        Consultar pedidos
+    </div>
+    <div class="container-sm">
+        <div class="mb-3">
+            <label for="npedido" class="form-label">Número do pedido:</label>
+            <input type="text" class="form-control" id="npedido" name="npedido" required>
+            <button type="button" class="btn btn-outline-primary mt-2" onclick="location.href='cancela.html'">Consultar</button>
         </div>
-    </section>
+    </div>
 </body>
 
 </html>
