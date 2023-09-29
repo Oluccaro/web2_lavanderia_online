@@ -89,8 +89,8 @@
                 <div class="rounded p-1 ${statusPedido.statusInfo[pedido.status][0]}"> Status: ${statusPedido.statusInfo[pedido.status][1]}</div>
               </div>
               <div>
-                ${pedido.status == "A" ? `<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#recolheModal" data-bs-whatever="${pedido.id}">Confirmar recolhimento</button>` :""}
-                ${pedido.status == "RC" ? `<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#lavaModal" data-bs-whatever="${pedido.id}" >Confirmar lavagem</button>` :""}
+                ${pedido.status == "A" ? `<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#recolheModal" data-bs-whatever="${pedido.id}">Confirmar recolhimento</button>` :""}
+                ${pedido.status == "RC" ? `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lavaModal" data-bs-whatever="${pedido.id}" >Confirmar lavagem</button>` :""}
                 ${pedido.status == "P" ? `<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finalizaModal" data-bs-whatever="${pedido.id}">Finalizar pedido</button>` :""}
               </div>
             </div>
@@ -198,7 +198,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" id="botaoRecolhe" class="btn btn-success">Recolher</button>
+          <button type="button" id="botaoRecolhe" class="btn btn-success">Confirmar</button>
         </div>
       </div>
     </div>
@@ -220,7 +220,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" id="botaoLava" class="btn btn-success">Lavar</button>
+          <button type="button" id="botaoLava" class="btn btn-success">Confirmar</button>
         </div>
       </div>
     </div>
@@ -244,8 +244,8 @@
         const modalTitle = finalizaModal.querySelector('.modal-title');
         const modalBodyInput = finalizaModal.querySelector('.modal-body h3');
         
-        modalTitle.textContent = `Confirmação!`;
-        modalBodyInput.textContent = `Deseja mesmo confirmar o pedido #${recipient}?`;
+        modalTitle.textContent = `Finalização!`;
+        modalBodyInput.textContent = `Deseja mesmo finalizar o pedido #${recipient}?`;
         
         //Botão para chamr a função que atualiza o pedido
         const botaoFinaliza = finalizaModal.querySelector("#botaoFinaliza");
@@ -266,8 +266,8 @@
         const modalTitle = recolheModal.querySelector('.modal-title');
         const modalBodyInput = recolheModal.querySelector('.modal-body h3');
         
-        modalTitle.textContent = `Recolhimento!`;
-        modalBodyInput.textContent = `Deseja mesmo recolher o pedido #${recipient}?`;
+        modalTitle.textContent = `Confirmar recolhimento!`;
+        modalBodyInput.textContent = `Deseja mesmo confirmar o recolhimento do pedido #${recipient}?`;
         
         //Botão para chamr a função que atualiza o pedido
         const botaoRecolhe = recolheModal.querySelector("#botaoRecolhe");
@@ -288,8 +288,8 @@
         const modalTitle = lavaModal.querySelector('.modal-title');
         const modalBodyInput = lavaModal.querySelector('.modal-body h3');
         
-        modalTitle.textContent = `Lavagem!`;
-        modalBodyInput.textContent = `Confirmar apedido #${recipient}?`;
+        modalTitle.textContent = `Confirmar lavagem!`;
+        modalBodyInput.textContent = `Deseja mesmo confirmar a lavagem do pedido #${recipient}?`;
         
         //Botão para chamr a função que atualiza o pedido
         const botaoLava = lavaModal.querySelector("#botaoLava");
