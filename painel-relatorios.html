@@ -11,49 +11,6 @@
   <script>
     //Pegando a referência do objeto jsPDF para facilitar
     const jsPDF = window.jspdf.jsPDF;
-    const Joao = {
-      "nome": "João",
-      "pedidos": [
-        {"item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14")},
-        {"item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14")},
-        {"item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10")},
-        {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10")}
-      ],
-      "statusInfo": 
-        {"A": ["text-info", "Aberto"],
-         "C": ["text-success", "Concluído"],
-         "X": ["text-danger", "Cancelado"],
-         "T": ["text-warning", "Em entrega"]}
-    }
-    localStorage.setItem("user", JSON.stringify(Joao));
-    function startPageExample() {
-      const user = JSON.parse(localStorage.getItem("user"));
-      $("#nome-cliente").html(`${user.nome}!`);
-      for (const item of user.pedidos) {
-        let listGroup = $("#lista-pedido");
-        let dataPedido = new Date(item.data);
-        let entrega = new Date();
-        entrega.setDate(entrega.getDate()+10);
-        listGroup.append(`
-          <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Pedido #${item.id}</h5>
-              <small>Realizado ${dataPedido.toLocaleDateString()}</small>
-            </div>
-            <div class="d-flex w-100 justify-content-between">
-              <div>
-                <p class="mb-1">Item: ${item.item}</p>
-                <p class="mb-1 ${user.statusInfo[item.status][0]}"> Status: ${user.statusInfo[item.status][1]}</p>
-              </div>
-              <form>
-                <button class="btn btn-danger" formaction="cancela.html">Cancelar Pedido</button>
-              </form>
-            </div>
-              <small>Entrega prevista: ${entrega.toLocaleDateString()}</small>            
-          </a>
-        `);
-      };
-    }
 
     function generatePDF() {
         const pdf = new jsPDF({
@@ -62,12 +19,32 @@
             format: 'a4',
             putOnlyUsedFonts:true
             });
-        pdf.text("Generate a PDF with JavaScript", 20, 20);
-        pdf.text("published on APITemplate.io", 20, 30);
-        pdf.addPage();
-        pdf.text(20, 20, 'The second page');
-        let data = new Date();
-        pdf.save(`RelatorioClientes_${data.toLocaleDateString().replace(/\//g, '_')}.pdf`);
+        let opcao = $("#relatorio").val();
+        switch (opcao) {
+            case "financeiro":
+                titulo = "Relatório das Receitas por período";
+                break;
+            case "clientes":
+                titulo = "Relatório detalhado dos clientes";
+                break;
+            case "clientes_fieis":
+                titulo = "Relatório dos 3 clientes mais fiéis";
+                break;
+            default:
+                break;
+        }
+        if(opcao != ""){
+            pdf.text(titulo, 20, 20);
+            pdf.text("Página 1...", 20, 30);
+            pdf.addPage();
+            pdf.text(20, 20, "Página 2...");
+            let data = new Date();
+            pdf.save(`relatorio_${opcao}_${data.toLocaleDateString().replace(/\//g, '_')}.pdf`);
+        } else {
+            alert("Selecione uma opção de relatório!"); 
+        }
+        
+        
     }
 
   
@@ -88,7 +65,7 @@
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="funcionario.html">Funcionarios</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="pedidos.funcionarios.html">Pedidos Totais Funcionário</a></li>
+                  <li><a class="dropdown-item" href="pedidos-funcionarios.html">Pedidos Totais Funcionário</a></li>
               </ul>
           </li>
           <li class="nav-item">
@@ -101,7 +78,20 @@
   </nav>
 
   <div class="container-lg">
-         <button onclick="generatePDF()">Generate PDF using jsPDF</button>
+    <div class="p-3 mt-5 fs-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+        <h2 class="p3">Relatórios</h2>
+        <div class="container-sm">
+          <select id="relatorio" class="form-select mb-5" aria-label="Default select example">
+            <option value="" selected>--- Escolher relatório ---</option>
+            <option value="financeiro">Relatório de Receita</option>
+            <option value="clientes">Relatório de Clientes</option>
+            <option value="clientes_fieis">Relatório de Clientes Fiéis</option>
+          </select>
+          <label class="p-2" for="data-de">Data de: </label><input class="rounded" type="date" name="data-de" id="">
+          <label class="p-2" for="data-ate">Data até: </label><input class="rounded" type="date" name="data-ate" id="">
+        </div>
+        <button class="btn btn-success p-2 mt-2" onclick="generatePDF()">Gerar Relatório!</button>
+      </div>   
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>

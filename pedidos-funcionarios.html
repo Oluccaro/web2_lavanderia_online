@@ -220,7 +220,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-          <button type="button" id="botaoLava" class="btn btn-success">Lavar</button>
+          <button type="button" id="botaoLava" class="btn btn-success">Confirmar</button>
         </div>
       </div>
     </div>
@@ -289,7 +289,7 @@
         const modalBodyInput = lavaModal.querySelector('.modal-body h3');
         
         modalTitle.textContent = `Lavagem!`;
-        modalBodyInput.textContent = `Deseja mesmo lavar o pedido #${recipient}?`;
+        modalBodyInput.textContent = `Confirmar a lavagem do pedido #${recipient}?`;
         
         //Botão para chamr a função que atualiza o pedido
         const botaoLava = lavaModal.querySelector("#botaoLava");
