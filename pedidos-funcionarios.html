@@ -93,8 +93,8 @@
                 <div class="rounded p-1 ${statusPedido.statusInfo[pedido.status][0]}"> Status: ${statusPedido.statusInfo[pedido.status][1]}</div>
               </div>
               <div>
-                ${pedido.status == "A" ? `<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#recolheModal" data-bs-whatever="${pedido.id}">Confirmar recolhimento</button>` : ""}
-                ${pedido.status == "RC" ? `<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#lavaModal" data-bs-whatever="${pedido.id}" >Confirmar lavagem</button>` : ""}
+                ${pedido.status == "A" ? `<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#recolheModal" data-bs-whatever="${pedido.id}">Confirmar recolhimento</button>` : ""}
+                ${pedido.status == "RC" ? `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lavaModal" data-bs-whatever="${pedido.id}" >Confirmar lavagem</button>` : ""}
                 ${pedido.status == "P" ? `<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finalizaModal" data-bs-whatever="${pedido.id}">Finalizar pedido</button>` : ""}
               </div>
             </div>
