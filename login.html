@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tela de Login</title>
-  <!-- Incluindo o CSS do Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  <!-- Option 1: Include in HTML -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <!-- Incluindo o CSS do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
+
 <body class="bg-light">
-    <nav role="navigation">
-        <ul class="nav navbar nav-pills bg-info">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle disabled" aria-disabled="true" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" id="menu">Menu</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="login.html">Login</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a aria-current="page">Fórmula Clean</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" aria-current="page" href="login.html" >Login</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg" style="background-color: lightblue;">
+        <div class="container-fluid">
+            <a class="btn btn-primary" type="button" href="login.html">Login</a>
+        </div>
     </nav>
     <script>
         document.getElementById("menu").style.visibility = "hidden";
@@ -38,7 +29,7 @@
                 <h4 class="text-primary text-center">Sistema de Lavanderia On-Line</h4>
             </div>
         </div>
-        
+
         <div class="row justify-content-center mt-1">
             <div class="col-md-4">
                 <div class="card">
@@ -56,7 +47,7 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                                 <div class="input-group-append">
                                     <span class="container" id="mostrarSenhaBtn">
-                                      <i id="olho" class="bi bi-eye-slash toggle-icon"></i>
+                                        <i id="olho" class="bi bi-eye-slash toggle-icon"></i>
                                     </span>
                                 </div>
                             </div>
@@ -82,16 +73,17 @@
         const mostrarSenhaBtn = document.getElementById('mostrarSenhaBtn');
         const olhoBtn = document.getElementById('olho');
         mostrarSenhaBtn.addEventListener('click', () => {
-        if (senhaInput.type === 'password') {
-            senhaInput.type = 'text';
-            olhoBtn.classList.remove("bi-eye-slash");
-            olhoBtn.classList.add("bi-eye");
-        } else {
-            senhaInput.type = 'password';
-            olhoBtn.classList.remove("bi-eye");
-            olhoBtn.classList.add("bi-eye-slash");
-        }
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                olhoBtn.classList.remove("bi-eye-slash");
+                olhoBtn.classList.add("bi-eye");
+            } else {
+                senhaInput.type = 'password';
+                olhoBtn.classList.remove("bi-eye");
+                olhoBtn.classList.add("bi-eye-slash");
+            }
         });
-    </script>    
+    </script>
 </body>
+
 </html>

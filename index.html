@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">  
-  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <title>Home</title>
   <script>
     const Joao = {
       "nome": "João",
       "pedidos": [
-        {"item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14")},
-        {"item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14")},
-        {"item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10")},
-        {"item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10")}
+        { "item": "Calça Azul", "status": "A", "id": 125, "data": new Date("2023/08/14") },
+        { "item": "Camiseta Preta", "status": "A", "id": 126, "data": new Date("2023/08/14") },
+        { "item": "Jaqueta de Camurça", "status": "A", "id": 62, "data": new Date("2023/08/10") },
+        { "item": "Chapéu Fedora", "status": "A", "id": 63, "data": new Date("2023/08/10") }
       ],
-      "statusInfo": 
-        {"A": ["text-info", "Aberto"],
-         "C": ["text-success", "Concluído"],
-         "X": ["text-danger", "Cancelado"],
-         "T": ["text-warning", "Em entrega"]}
+      "statusInfo":
+      {
+        "A": ["text-info", "Aberto"],
+        "C": ["text-success", "Concluído"],
+        "X": ["text-danger", "Cancelado"],
+        "T": ["text-warning", "Em entrega"]
+      }
     }
     localStorage.setItem("user", JSON.stringify(Joao));
     function startPageExample() {
@@ -29,7 +35,7 @@
         let listGroup = $("#lista-pedido");
         let dataPedido = new Date(item.data);
         let entrega = new Date();
-        entrega.setDate(entrega.getDate()+10);
+        entrega.setDate(entrega.getDate() + 10);
         listGroup.append(`
           <a href="#" class="list-group-item list-group-item-action" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
@@ -50,51 +56,73 @@
         `);
       };
     }
-  
+
   </script>
 </head>
-<body>
-  <!--Adicionando a navbar-->
-  <nav role="navigation">
-      <ul class="nav navbar nav-pills bg-info">
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" id="menu">Menu</a>
-              <ul class="dropdown-menu bg-info">
-                  <li><a class="dropdown-item" href="index.html" aria-current="page" dropdown-color="info">Listagem de Pedidos</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="pedido.html">Novo pedido</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="consulta-pedidos.html">Consultar pedidos</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="funcionario.html">Funcionarios</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="pedidos-funcionarios.html">Pedidos Totais Funcionário</a></li>
 
-              </ul>
-          </li>
-          <li class="nav-item">
-              <a>Fórmula Clean</a>
-          </li>
-          <li class="nav-item">
+<body style="background-color: lightblue;">
+  <!--Adicionando a navbar-->
+  <nav class=" navbar bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a>
+      <a href="orcamento.html" class="text"><i class="bi bi-cart h4 border-black"></i></a>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="offcanvasNavbarLabel"> João</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Início</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="lista-pedidos.html">Meus Pedidos</a>
+              <a class="nav-link" href="consulta-pedidos.html">Consultar Pedido</a>
+              <a class="nav-link active" aria-current="page" href="pedido.html">Novo Pedido</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="login.html">Sair</a>
-          </li>
-      </ul>
+            </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </nav>
 
   <!--Adicionando o conteúdo dos pedidos-->
-  <h3 class="p-2">Olá, <span id="nome-cliente"></span></h3>
-  <div class="p-3 fs-4 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-    Lista de Pedidos em aberto
-  </div>
-  <div class="container-lg">
-    <div class="list-group" id="lista-pedido">
+  <section class="d-flex">
+    <div class="container py-5 h-100 mb-2">
+      <div class="card card-registration card-registration-2 p-3 mb-3" style="border-radius: 15px;">
+        <div class="row g-0">
+          <div class="row">
+            <div class="col-12 mb-0">
+              <div class="card-title p-2 vstack gap-3">
+                <div class="border border-info-subtle border-3 rounded-pill col-3 px-4 py-2" style="background-color: #63E1B4;">
+                  <h3 class="p-2 fw-bold mb-0 text-light">Olá, <span id="nome-cliente"></span></h3>
+                </div>
+                <h5 class="p-2 fw-bold mb-2 text-light-emphasis">Confira seus pedidos em aberto:</h5>
+              </div>
+              <div class="container-lg">
+                <div class="list-group" id="lista-pedido">
+                </div>
+                <button type="button" class="btn btn-outline-primary mt-2 mb-2" onclick="location.href='lista-pedidos.html'">Listar Todos os Pedidos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button type="button" class="btn btn-outline-primary mt-2" onclick="location.href='lista-pedidos.html'">Listar Todos os Pedidos</button>
-  </div>
+  </section>
   <script>
     startPageExample();
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
+
 </html>
