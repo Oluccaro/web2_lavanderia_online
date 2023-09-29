@@ -36,10 +36,15 @@
                     <div class="card-header">
                         <h4 class="text-center">Recuperação de Senha</h4>
                     </div>
-                    <div class="card-body text-center">
-                        <h5 class="bg-primary text-white p-1 rounded">Link enviado!</h5>
+                    <div class="card-body">
                         <form>
-                            <button class="btn btn-light" formaction="mensagem.html">Enviar novamente</button>
+                            <div class="mb-3">
+                                <h6 class="text-center">Insira o seu email ou nome de usuário e enviaremos um link ao e-mail cadastrado para você voltar a acessar a sua conta.</h6>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="username" name="username" required placeholder="E-mail ou nome de usuário">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" formaction="mensagem.html">Enviar link</button>
                         </form>
                     </div>
                     <div class="card-footer text-center">

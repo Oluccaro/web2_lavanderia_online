@@ -7,41 +7,79 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="orcamento-style.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <title>Carrinho</title>
+
+  <script>
+    const carrinho =
+    {
+      "carrinho": [
+        { "item": "Camiseta", "preco": 10.00, },
+        { "item": "Calça", "preco": 10.00, },
+        { "item": "Formais", "preco": 10.00, },
+      ]
+    };
+
+    if (!localStorage.getItem("carrinho")) {
+      localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    }
+
+    function startCarrinhoExample() {
+      const pedidos = JSON.parse(localStorage.getItem("carrinho"));
+      for (const carrinho of carrinho.carrinho) {
+        let listGroup = $("#lista-carrinho");
+        let dataPedido = new Date(carrinho.data);
+        let entrega = new Date();
+        entrega.setDate(dataPedido.getDate() + 10);
+        listGroup.append(`
+        `);
+      };
+    }
+  </script>
 </head>
 
-<body class="bg-light">
+<body style="background-color:lightblue">
   <header>
     <!--Adicionando a navbar-->
-    <nav role="navigation">
-        <ul class="nav navbar nav-pills bg-info">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" id="menu">Menu</a>
-                <ul class="dropdown-menu bg-info">
-                    <li><a class="dropdown-item" href="index.html" aria-current="page" dropdown-color="info">Listagem de Pedidos</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="pedido.html">Novo pedido</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="consulta-pedidos.html">Consultar pedidos</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a>Fórmula Clean</a>
-            </li>
-            <li class="nav-item">
+    <nav class=" navbar bg-body-tertiary sticky-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#0A57A2">FORMULA CLEAN</a>
+        <a href="orcamento.html" class="text"><i class="bi bi-cart h4 border-black"></i></a>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">João</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Início</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lista-pedidos.html">Meus Pedidos</a>
+                <a class="nav-link" href="consulta-pedidos.html">Consultar Pedido</a>
+                <a class="nav-link" href="pedido.html">Novo Pedido</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="login.html">Sair</a>
-            </li>
-        </ul>
+              </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <section class="h-100 h-custom" style="background-color:lightblue">
-    <div class="container py-5 h-100">
+  <section class="h-100 h-custom">
+    <div class="container py-5 h-100 mb-2">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
-          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card card-registration card-registration-2 mb-3" style="border-radius: 15px;">
             <div class="card-body p-0">
               <div class="row g-0">
                 <div class="col-lg-8">
@@ -60,15 +98,6 @@
                         <h6 class="text-black mb-0">Camiseta</h6>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
-
-                        <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm" />
-
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                         <h6 class="mb-0">R$ 10.00</h6>
@@ -88,15 +117,7 @@
                         <h6 class="text-black mb-0">Calça</h6>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
 
-                        <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm" />
-
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                         <h6 class="mb-0">R$ 10.00</h6>
@@ -116,15 +137,6 @@
                         <h6 class="text-black mb-0">Formais</h6>
                       </div>
                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
-
-                        <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm" />
-
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
                       </div>
                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                         <h6 class="mb-0">R$ 10.00</h6>
@@ -160,7 +172,31 @@
                       <h5>R$ 60.00</h5>
                     </div>
 
-                    <a type="button" class="btn btn-primary btn-block btn-lg" data-mdb-ripple-color="dark" href="pagar.html">Confirmar</a>
+                    <div class="hstack gap-5">
+                      <div id="confirmarPedido">
+                        <a type="button" id="btnConfirmar" class="btn btn-primary btn-block btn-lg" data-mdb-ripple-color="dark" href="pagar.html">Confirmar</a>
+                      </div>
+
+                      <div id="rejeitarPedido">
+                        <a type="button" id="btnRejeitar" class="btn btn-danger btn-block btn-lg" data-mdb-ripple-color="dark" href="">Rejeitar</a>
+                      </div>
+                    </div>
+                    <div id="confirmarRejeicao" class="container mt-5 text-center rounded-pill border border-danger d-none">
+                      <div class="mt-3 mb-3">
+                        <p>Tem certeza de que deseja rejeitar este orçamento?</p>
+                        <button id="btnConfirmacao" class="btn btn-danger">Confirmar Rejeição</button>
+                        <a href="index.html" class="btn btn-secondary">Voltar</a>
+                      </div>
+                    </div>
+
+                    <div id="orcamentoRejeitado" class="container mt-5 text-center rounded-pill border border-danger d-none">
+                      <div class="mt-3">
+                        <h5 class="bg-danger text-white p-2 rounded d-inline-block" style="max-width: 200px;">Orçamento Rejeitado!</h5>
+                      </div>
+                      <div class="mb-3">
+                        <a href="index.html" class="btn btn-secondary">Voltar à Página Inicial</a>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
@@ -170,7 +206,30 @@
         </div>
       </div>
     </div>
-    </div>
-    </div>
   </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const divRejeitar = document.getElementById('rejeitarPedido');
+      const btnRejeitar = document.getElementById('btnRejeitar');
+
+      const divConfirmacao = document.getElementById('confirmarRejeicao');
+      const btnConfirmacao = document.getElementById('btnConfirmacao');
+
+      const divOrcamentoRejeitado = document.getElementById('orcamentoRejeitado');
+
+      btnRejeitar.addEventListener('click', () => {
+        divRejeitar.classList.add("d-none");
+        divConfirmacao.classList.remove("d-none");
+      });
+
+      btnConfirmacao.addEventListener('click', () => {
+        divConfirmacao.classList.add("d-none");
+        divOrcamentoRejeitado.classList.remove("d-none");
+      });
+    });
+  </script>
+
 </body>
+
+</html>
